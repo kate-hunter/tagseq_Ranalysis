@@ -17,11 +17,19 @@ Set up the data for reading in edgeR-comes from
 
 I think I need to do each individually for ovary and abdomen
 
-```{r}
+```{r, echo=FALSE}
 #set up the environment
 
 library(limma)
 library(edgeR)
+setwd("/Users/fkhunter12/Box Sync/Nomia_protocols_analyses/nomia/tagseq_analysis/tagseq_R")
+
+
+```
+
+
+
+```{r}
 #read in gene counts with rows being genes/gene counts and columns being samples
 files <- list.files(path="/Users/fkhunter12/Downloads/GSE63310_RAW", 
                         pattern=".txt", full.names = TRUE)
