@@ -24,21 +24,15 @@ library(limma)
 library(edgeR)
 setwd("/Users/fkhunter12/Box Sync/Nomia_protocols_analyses/nomia/tagseq_analysis/tagseq_R")
 
-
+files <- list.files(pattern=".txt", full.names = TRUE)
 ```
 
 
 
 ```{r}
-#read in gene counts with rows being genes/gene counts and columns being samples
-files <- list.files(path="/Users/fkhunter12/Downloads/GSE63310_RAW", 
-                        pattern=".txt", full.names = TRUE)
-
-#below is just to look at the EntrezID, length, and count for each gene
-df<-read.delim(files[1], nrow=5) 
-
 #readDGE is used to (tags=geneID, and last column is counts)
-x<-readDGE(files, columns=c(1,3)) 
+readDGE(files, columns=c(1,7)) 
+
 class(x)
 dim(x)
 
