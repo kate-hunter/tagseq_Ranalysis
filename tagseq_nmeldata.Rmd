@@ -29,28 +29,31 @@ library(limma)
 library(edgeR)
 setwd("~/Box Sync/Nomia_protocols_analyses/nomia/tagseq_analysis/tagseq_R")
 
-df<-read.table("countsmatrix.txt", header=TRUE)
+df<-read.table("countsmatrix.txt", header=TRUE, row.names="Geneid")
 head(df)
 
-nameslist<-names(df)[7:9] #here is where I want to get my list of the sample names since they're kind of bad 
+nameslist<-names(df)[6:8] #here is where I want to get my list of the sample names since they're kind of bad 
 betternames<-str_extract_all(nameslist,"(?<=sortedbycoord.).+(?=_S)") #extract just sample names
 
-names(df)[7:9]<-betternames
+names(df)[6:8]<-betternames
 names(df) #check that it worked
 head(df)
+dim(df)
+#11060     9
+
+countsmat<-df[-c(1:5)]
+
+DGEList(counts=countsmat)
+#Worked so far!!!! Now I just need my little sample information table
 ```
 
 
 
 ```{r}
 #Then need to make sure I have file of all the treatment variables associated with text file ID's/beeIDs match
+#example table below
 
-genes <- genes[!duplicated(genes$ENTREZID),]
-genes<-table(geneID, symbol, chromosome) 
 
-x$genes<-genes #Add gene annotations to the DGEList 
-
-x
 
 #need a table with the gene annotations essentially
 #should produce this: 
