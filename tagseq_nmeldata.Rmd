@@ -27,10 +27,12 @@ I think I need to do each individually for ovary and abdomen
 
 library(limma)
 library(edgeR)
+library(stringr)
 setwd("~/Box Sync/Nomia_protocols_analyses/nomia/tagseq_analysis/tagseq_R")
 
 df<-read.table("countsmatrix.txt", header=TRUE, row.names="Geneid")
 head(df)
+View(df)
 
 nameslist<-names(df)[6:8] #here is where I want to get my list of the sample names since they're kind of bad 
 betternames<-str_extract_all(nameslist,"(?<=sortedbycoord.).+(?=_S)") #extract just sample names
@@ -39,7 +41,6 @@ names(df)[6:8]<-betternames
 names(df) #check that it worked
 head(df)
 dim(df)
-#11060     9
 
 countsmat<-df[-c(1:5)]
 
